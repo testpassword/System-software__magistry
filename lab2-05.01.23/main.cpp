@@ -16,7 +16,7 @@ int SUM = 0;
 vector<int> nums;
 
 int rand_include(int max, int min = 0) {
-    return max <= 0 ? 0 : min + rand() % ((max + 1) - min);
+    return max <= min ? 0 : min + rand() % ((max + 1) - min);
 }
 
 void* producer_routine(void* arg) {
@@ -58,6 +58,7 @@ int get_tid() {
 }
 
 int main(int argc, char *argv[]) {
+    if (argc < 3) return -1;
     vector<string> args(argv, argv + argc);
     params.num_of_consumers = stoi(args[1]);
     params.sleep_limit = stoi(args[2]);
